@@ -78,7 +78,7 @@ const handleSubmit = async (e) => {
   loader(messageDiv);
 
   // fetch data
-  const response = await fetch('https://testgpt.onrender.com', {
+  const response = await fetch('https://testgpt.onrender.com/', {
     method: 'POST',
     headers: {
       'Content-Type' : 'application/json'
