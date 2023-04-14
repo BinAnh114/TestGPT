@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <button id="a2hs-button" onclick="addToHomeScreen()">Thêm vào màn hình chính</button>
   </head>
   <body>
     <div id="app">
@@ -17,5 +19,28 @@
       </form>
     </div>
     <script type="module" src="script.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+      function addToHomeScreen() {
+        var a2hsPrompt = document.getElementById('a2hs-button');
+        // Hiển thị thông báo
+        a2hsPrompt.style.display = 'block';
+        // Đăng ký sự kiện nhấp vào nút "Thêm"
+        a2hsPrompt.addEventListener('click', function() {
+          // Thêm ứng dụng vào màn hình chính
+          addToHomeScreen.prompt();
+          // Ẩn thông báo
+          a2hsPrompt.style.display = 'none';
+        });
+      }
+    </script>
   </body>
 </html>
